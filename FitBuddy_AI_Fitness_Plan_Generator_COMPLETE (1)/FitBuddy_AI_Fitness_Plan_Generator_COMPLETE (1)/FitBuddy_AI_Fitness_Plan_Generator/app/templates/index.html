@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitBuddy - AI Fitness Planner</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+  <nav><a class="brand" href="/">FitBuddy</a><a href="/view-all-users">Admin View</a><a href="/docs">API Docs</a></nav>
+  <section class="hero">
+    <p class="eyebrow">AI FITNESS PLAN GENERATOR</p>
+    <h1>Build a smarter 7-day fitness routine.</h1>
+    <p>Enter your profile and let FitBuddy generate a structured workout plan plus a practical nutrition/recovery tip.</p>
+  </section>
+
+  {% if error %}<div class="alert error">{{ error }}</div>{% endif %}
+
+  <form method="post" action="/generate-workout" class="card form-grid">
+    <label>Name<input name="name" required placeholder="Your name"></label>
+    <label>User ID<input name="user_id" required placeholder="FB001"></label>
+    <label>Age<input name="age" type="number" min="13" max="100" required></label>
+    <label>Weight (kg)<input name="weight" type="number" step="0.1" min="20" max="300" required></label>
+    <label>Fitness Goal
+      <select name="goal" required>
+        <option value="weight loss">Weight Loss</option>
+        <option value="muscle gain">Muscle Gain</option>
+        <option value="general wellness">General Wellness</option>
+        <option value="flexibility">Flexibility</option>
+        <option value="cardio fitness">Cardio Fitness</option>
+      </select>
+    </label>
+    <label>Workout Intensity
+      <select name="intensity" required>
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+      </select>
+    </label>
+    <button type="submit" class="btn primary full">Generate 7-Day Plan</button>
+  </form>
+
+  <p class="note">Educational wellness tool. Adjust activity to your abilities and seek professional advice when appropriate.</p>
+</div>
+</body>
+</html>
